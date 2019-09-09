@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest/user")
+@RequestMapping("/rest/")
 @Api(value = "Demo User Controller Resource", description = "Shows the user information")
 public class DemoController {
 
@@ -38,6 +38,11 @@ public class DemoController {
     @GetMapping("/{firstName}")
     public User getUser(@PathVariable("firstName") final String firstName){
         return new User(firstName, "RandomStringlastName", 20);
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hello World!";
     }
 
 
