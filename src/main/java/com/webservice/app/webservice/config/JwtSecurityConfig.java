@@ -49,6 +49,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("**/rest/**")
                 .authenticated()
                 .and()
+                .antMatcher("**/console/**").anonymous()
+                .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
