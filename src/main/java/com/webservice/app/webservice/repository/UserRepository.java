@@ -1,6 +1,6 @@
 package com.webservice.app.webservice.repository;
 
-import com.webservice.app.webservice.dao.User;
+import com.webservice.app.webservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

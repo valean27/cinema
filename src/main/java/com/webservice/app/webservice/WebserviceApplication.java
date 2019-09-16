@@ -1,6 +1,8 @@
 package com.webservice.app.webservice;
 
-import com.webservice.app.webservice.dao.User;
+import com.webservice.app.webservice.model.JwtUser;
+import com.webservice.app.webservice.model.User;
+import com.webservice.app.webservice.repository.AdminRepository;
 import com.webservice.app.webservice.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +13,6 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @EnableJpaRepositories(basePackages = "com.webservice.app.webservice.repository")
@@ -23,9 +24,13 @@ public class WebserviceApplication {
     }
 
     @Bean
-    CommandLineRunner init(UserRepository userRepo) {
+    CommandLineRunner init(UserRepository userRepo, AdminRepository adminRepository) {
         return args -> {
             PodamFactory factory = new PodamFactoryImpl();
+            JwtUser admin = new JwtUser();
+            admin.setRole("Administrator");
+            admin.setUsername("valeanstefan");
+            adminRepository.save(admin);
             List<User> users = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 users.add(factory.manufacturePojo(User.class));

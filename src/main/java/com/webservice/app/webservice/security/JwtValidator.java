@@ -1,12 +1,17 @@
 package com.webservice.app.webservice.security;
 
 import com.webservice.app.webservice.model.JwtUser;
+import com.webservice.app.webservice.repository.AdminRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JwtValidator {
+
+    @Autowired
+    AdminRepository adminRepository;
 
     private String secret = "secretulMariei";
 
@@ -19,12 +24,9 @@ public class JwtValidator {
                     .parseClaimsJws(token)
                     .getBody();
 
-            jwtUser = new JwtUser();
-            jwtUser.setUsername(body.getSubject());
-            jwtUser.setId((Long.parseLong((String) body.get("userId"))));
-            jwtUser.setRole((String) body.get("role"));
+            jwtUser = adminRepository.findById(Integer.parseInt((String) body.get("userId"))).orElseThrow(RuntimeException::new);
         }catch(Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("Token invalid or expired");
         }
         return jwtUser;
     }

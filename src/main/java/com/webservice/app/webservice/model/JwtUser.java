@@ -1,8 +1,20 @@
 package com.webservice.app.webservice.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "jwtUser")
 public class JwtUser {
     private String username;
-    private long id;
+    @Id
+    @Column(name = "id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String role;
 
     public void setUsername(String username) {
@@ -13,11 +25,11 @@ public class JwtUser {
         return username;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

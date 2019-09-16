@@ -1,4 +1,4 @@
-package com.webservice.app.webservice.dao;
+package com.webservice.app.webservice.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

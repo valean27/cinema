@@ -1,6 +1,6 @@
 package com.webservice.app.webservice.controller;
 
-import com.webservice.app.webservice.dao.User;
+import com.webservice.app.webservice.model.User;
 import com.webservice.app.webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
