@@ -40,4 +40,12 @@ public class JwtUser {
     public String getRole() {
         return role;
     }
+
+    @Override
+    public String toString() {
+        return "{ \"username\":" + '\"'+username+'\"' +
+                ", \"id\":" + id +
+                ", \"role\":" + '\"'+ role + '\"'+
+                '}';
+    }
 }
